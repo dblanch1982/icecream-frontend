@@ -1,0 +1,12 @@
+{
+  "name": "Alice",
+  "age": 29,
+  "email": "alice@example.com",
+  "isMember": true,
+  "skills": ["Python", "Terraform", "AWS"],
+  "address": {
+    "street": "Hauptstrasse 15",
+    "city": "Wasserburg am Inn",
+    "country": "Germany"
+  }
+}
