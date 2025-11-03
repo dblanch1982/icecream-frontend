@@ -1,5 +1,5 @@
 variable "env" {
   description = "Environment name (e.g. dev, prod)"
   type        = string
-  default     = "stage"
+  default     = "test"
 }
