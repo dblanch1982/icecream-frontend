@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
-import { IcecreamList } from '../icecream-list/icecream-list';
+import { Component, OnInit } from '@angular/core';
+import { Eisdiele } from '../model/eisdiele.model';
+import { EisdieleService } from '../service/eisdiele';
+import { CurrencyPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+
+
+
 
 @Component({
-  selector: 'app-menu',
-  imports: [IcecreamList],
+  selector: 'app-eisdiele',
   templateUrl: './menu.html',
-  styleUrl: './menu.css'
-})
-export class Menu {
+  imports: [CurrencyPipe],
 
+})
+export class MenuComponent implements OnInit {
+  eisdiele?: Eisdiele;
+
+  constructor(private eisdieleService: EisdieleService) {}
+
+  ngOnInit(): void {
+    this.eisdieleService.getEisdiele().subscribe(data => {
+      this.eisdiele = data;
+    });
+  }
 }

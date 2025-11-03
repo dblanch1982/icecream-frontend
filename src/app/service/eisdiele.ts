@@ -30,13 +30,19 @@ export class EisdieleService {
     id: 1,
     name: 'Eiszauber Altstadt Wasserburg',
     adresse: 'Marienplatz 3, 83512 Wasserburg am Inn',
-    sorten: [ this.eisSorteListe ]
+    sorten: this.eisSorteListe,
+    telefon: '',
+    mail: '',
+    qr_code: '',
+    map: '',
+    heisse_getraenke: []
   };
 
-  constructor(private http: HttpClient) {}
+//  constructor(private http: HttpClient) {}
 
   // Simulierter API-Call
   getEisdiele(): Observable<Eisdiele> {
+    console.log("eisdiele:" , this.eisdiele)
     return of(this.eisdiele);
   }
 }

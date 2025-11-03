@@ -1,1 +1,33 @@
-<app-icecream-list></app-icecream-list>
+
+    @if (eisdiele) {
+        <h2>{{ eisdiele.name }}</h2>
+        <p>{{ eisdiele.adresse }}</p>
+         <p>{{ eisdiele.telefon }}</p>
+         <p>{{ eisdiele.mail }}</p>
+        <h3>🍨 Unsere Sorten: </h3>
+        @for (sorte of eisdiele.sorten; track sorte.name) {            
+            <div class="card">
+                 
+                <h4>{{ sorte.name }} – {{ sorte.preis | currency:'EUR' }}</h4>
+                <p>{{ sorte.beschreibung }}</p>
+                
+                @if (sorte.vegan) {
+                <p>🌱 Vegan</p>
+                }
+                <ul>
+                @for (z of sorte.zutaten; track z.name) {  
+                    <li>
+                        {{ z.name }}
+                        @if (z.allergene) {
+                        <span> ({{ z.allergene.join(', ') }})</span>
+                        }
+                    </li>
+                }
+                </ul>
+
+            </div>
+        } @empty {
+        <li>There are no items.</li>
+        }
+    }
+

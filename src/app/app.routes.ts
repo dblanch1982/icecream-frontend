@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { IcecreamList } from './icecream-list/icecream-list';
-import { Menu } from './menu/menu';
+import { MenuComponent } from './menu/menu';
 
 export const routes: Routes = [  {
     path: '',
-    component: Menu,
+    component: MenuComponent,
     title: 'Eis Liste',
   },
   {
@@ -14,7 +14,7 @@ export const routes: Routes = [  {
   },
     {
     path: 'menu',
-    component: Menu,
+    component: MenuComponent,
     title: 'Menu',
   }
 ];
