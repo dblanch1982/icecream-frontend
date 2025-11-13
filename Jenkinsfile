@@ -1,6 +1,36 @@
 pipeline {
     agent any
+
+    environment {
+        SCANNER_HOME = tool 'sonar-scanner'
+        SONAR_TOKEN = credentials('sonar-token')
+    }
+
     stages {
+
+        stage('Code-Analysis') {
+            steps {
+                withSonarQubeEnv('SonarCloud') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner \
+  -Dsonar.organization=dblanch1982 \
+  -Dsonar.projectKey=dblanch1982_icecream-frontend '''
+                }
+            }
+        }
+
+        stage('Docker Build And Push') {
+            steps {
+                script {
+                    docker.withRegistry('', 'docker-cred') {
+                        def buildNumber = env.BUILD_NUMBER ?: '1'
+                        def image = docker.build("dainablanch/icecream-frontend:latest")
+                        image.push()
+                    }
+                }
+            }
+        }
+
+
         stage('Build') {
             steps {
                 sh 'ls'
